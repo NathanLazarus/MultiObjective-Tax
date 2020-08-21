@@ -388,9 +388,9 @@ Module[{gx, headf, headg, nfx, ngx, nx, glength, gradfx, jacgx, jacgpos,
 		If[Length[compiled] >= 1,
 			compile = First[compiled]];
 		If[Length[compiled] >= 2,
-			compOpts = Append[Rest[compiled],"RuntimeOptions" -> "Speed"];
+			compOpts = Join[Rest[compiled],{"RuntimeOptions" -> "Speed"}];
 		,
-			compOpts = "RuntimeOptions" -> "Speed";
+			compOpts = {"RuntimeOptions" -> "Speed"};
 		];
 	,
 		compile = compiled;
@@ -1177,9 +1177,9 @@ Module[{cf, cg, cgradf, cjacg, ch, cmon, symsx, symsl, assoc, assoc2, symsp, sym
 	If[needInitialization, LoadIPOPTLink[]];
 
 	If[TrueQ[ListQ[compiled] && Length[compiled] >= 2],
-		compOpts = Append[Rest[compiled],"RuntimeOptions" -> "Quality"];
+		compOpts = Join[Rest[compiled],{"RuntimeOptions" -> "Speed"}];
 	,
-		compOpts = {"RuntimeOptions" -> "Quality"};
+		compOpts = {"RuntimeOptions" -> "Speed"};
 	];
 
 	(* objective function *)
